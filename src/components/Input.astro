@@ -1,0 +1,50 @@
+---
+interface Props {
+  placeholder?: string;
+  helperText?: TextHelper;
+  label?: LabelText;
+}
+
+interface LabelText {
+  label: boolean;
+  labelText: string;
+}
+
+interface TextHelper {
+  textHelper: boolean;
+  text: string;
+}
+
+const { placeholder, helperText, label } = Astro.props;
+let textHelper = "";
+let labelText = "";
+
+if (label?.label === true) {
+  labelText = label.labelText;
+}
+
+if (helperText?.textHelper === true) {
+  textHelper = helperText.text;
+} else if (helperText?.textHelper === false) {
+  textHelper = "";
+}
+---
+
+
+<div class="mt-1">
+    {
+        label?.label ? (
+          <label class="text-sm font-medium text-slate-400">{labelText}</label>
+        ) : null
+      }
+    <input
+      class="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+      placeholder={placeholder}
+      type="text"
+    />
+    {
+      helperText?.textHelper ? (
+        <p class="mt-2 text-sm text-slate-400">{textHelper}</p>
+      ) : null
+    }
+</div>
