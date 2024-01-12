@@ -7,8 +7,6 @@ interface Props {
   size?: any;
 }
 
-
-
 interface Value {
   data: any;
 }
@@ -28,14 +26,14 @@ let textHelper = "";
 let labelText = "";
 console.log(value);
 console.log(size);
-let sizeI = '';
+let sizeI = "";
 
 if (size === "sm") {
-    sizeI = 'w-32';
-}else if (size === "md") {
-    sizeI = 'w-64';
-}else if (size === "lg") {
-    sizeI = 'w-96';
+  sizeI = "w-32";
+} else if (size === "md") {
+  sizeI = "w-64";
+} else if (size === "lg") {
+  sizeI = "w-96";
 }
 
 if (label?.label === true) {
@@ -48,18 +46,20 @@ if (helperText?.textHelper === true) {
   textHelper = "";
 }
 ---
-
 <div class="mt-1">
   {
     label?.label ? (
       <label class="text-sm font-medium text-slate-400">{labelText}</label>
     ) : null
   }
-  <input
-    class=`form-input ${sizeI} rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent`
-    placeholder={placeholder}
-    type="text"
-  />
+  <!-- form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent -->
+  <div class="">
+    <input
+      class=`form-input ${sizeI} rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent`
+      placeholder={placeholder}
+      type="text"
+    />
+  </div>
   {
     helperText?.textHelper ? (
       <p class="mt-2 text-sm text-slate-400">{textHelper}</p>
