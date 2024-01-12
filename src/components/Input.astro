@@ -4,7 +4,10 @@ interface Props {
   helperText?: TextHelper;
   label?: LabelText;
   value?: any;
+  size?: any;
 }
+
+
 
 interface Value {
   data: any;
@@ -20,13 +23,19 @@ interface TextHelper {
   text: string;
 }
 
-const { placeholder, helperText, label, value } = Astro.props;
+const { placeholder, helperText, label, value, size } = Astro.props;
 let textHelper = "";
 let labelText = "";
 console.log(value);
+console.log(size);
+let sizeI = '';
 
-const handleValue = (event:Value) => {
-  console.log(event.data);
+if (size === "sm") {
+    sizeI = 'w-32';
+}else if (size === "md") {
+    sizeI = 'w-64';
+}else if (size === "lg") {
+    sizeI = 'w-96';
 }
 
 if (label?.label === true) {
@@ -47,7 +56,7 @@ if (helperText?.textHelper === true) {
     ) : null
   }
   <input
-    class="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+    class=`form-input ${sizeI} rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent`
     placeholder={placeholder}
     type="text"
   />
