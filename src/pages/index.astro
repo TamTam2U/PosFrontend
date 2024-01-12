@@ -1,6 +1,20 @@
 ---
-import Input from '../components/Input.astro';
+import Input from "../components/Input.astro";
+
+interface Value {
+	data: any;
+	message: string;
+}
+
+const Value: Value = {
+	data: "data",
+	message: "message",
+};
 ---
 
-<Input placeholder="TamTam4U" helperText={{textHelper: true, text: "Ini Helper Text"}} label={{label: true, labelText: "Ini Label Text"}}></Input>
-
+<Input
+  placeholder="TamTam4U"
+  helperText={{ textHelper: true, text: "Ini Helper Text" }}
+  label={{ label: true, labelText: "Ini Label Text" }}
+  value={Value}
+/>

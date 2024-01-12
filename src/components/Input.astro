@@ -3,6 +3,11 @@ interface Props {
   placeholder?: string;
   helperText?: TextHelper;
   label?: LabelText;
+  value?: any;
+}
+
+interface Value {
+  data: any;
 }
 
 interface LabelText {
@@ -15,9 +20,16 @@ interface TextHelper {
   text: string;
 }
 
-const { placeholder, helperText, label } = Astro.props;
+const { placeholder, helperText, label, value } = Astro.props;
 let textHelper = "";
 let labelText = "";
+console.log(value);
+
+const handleValue = (event:any) => {
+    let data = event.target.value
+    console.log(event.target.value)
+    return data
+}
 
 if (label?.label === true) {
   labelText = label.labelText;
@@ -30,21 +42,21 @@ if (helperText?.textHelper === true) {
 }
 ---
 
-
 <div class="mt-1">
-    {
-        label?.label ? (
-          <label class="text-sm font-medium text-slate-400">{labelText}</label>
-        ) : null
-      }
-    <input
-      class="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-      placeholder={placeholder}
-      type="text"
-    />
-    {
-      helperText?.textHelper ? (
-        <p class="mt-2 text-sm text-slate-400">{textHelper}</p>
-      ) : null
-    }
+  {
+    label?.label ? (
+      <label class="text-sm font-medium text-slate-400">{labelText}</label>
+    ) : null
+  }
+  <input
+    class="form-input w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+    placeholder={placeholder}
+    value={value}
+    type="text"
+  />
+  {
+    helperText?.textHelper ? (
+      <p class="mt-2 text-sm text-slate-400">{textHelper}</p>
+    ) : null
+  }
 </div>
